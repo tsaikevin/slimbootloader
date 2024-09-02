@@ -1148,7 +1148,6 @@ UpdateFspConfig (
     FspsConfig->PkgCStateLimit = 0xff;
     FspsConfig->CstCfgCtrIoMwaitRedirection = 0;
     FspsConfig->PmcLpmS0ixSubStateEnableMask = 0x9;
-    FspsConfig->VbtSize           = 0x2200;
     FspsConfig->CpuPcieRpGen3Uptp[2] = 0x5;
     FspsConfig->CpuPcieRpGen4Uptp[2] = 0x8;
     FspsConfig->CpuPcieRpGen4Dptp[2] = 0x9;
@@ -1211,7 +1210,6 @@ UpdateFspConfig (
         FspsConfig->PortResetMessageEnable[2] = 0x0;
         FspsConfig->PortResetMessageEnable[4] = 0x0;
         FspsConfig->AmtEnabled = 0x0;
-        FspsConfig->LidStatus = 0x5b;
         FspsConfig->TcssAuxOri = 0x1;
         FspsConfig->Device4Enable = 0x0; //this controls the thermal device (B0,D4,F0)
 #if defined(PLATFORM_ADLN)
