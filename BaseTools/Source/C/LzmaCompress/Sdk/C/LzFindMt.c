@@ -112,7 +112,7 @@ static SRes MtSync_Create2(CMtSync *p, THREAD_FUNC_TYPE startAddress, void *obj,
   RINOK_THREAD(AutoResetEvent_CreateNotSignaled(&p->canStart));
   RINOK_THREAD(AutoResetEvent_CreateNotSignaled(&p->wasStarted));
   RINOK_THREAD(AutoResetEvent_CreateNotSignaled(&p->wasStopped));
-  
+
   RINOK_THREAD(Semaphore_Create(&p->freeSemaphore, numBlocks, numBlocks));
   RINOK_THREAD(Semaphore_Create(&p->filledSemaphore, 0, numBlocks));
 
@@ -537,7 +537,7 @@ SRes MatchFinderMt_Create(CMatchFinderMt *p, UInt32 historySize, UInt32 keepAddB
 static void MatchFinderMt_Init(CMatchFinderMt *p)
 {
   CMatchFinder *mf = p->MatchFinder;
-  
+
   p->btBufPos =
   p->btBufPosLimit = 0;
   p->hashBufPos =
@@ -610,7 +610,7 @@ static UInt32 * MixMatches2(CMatchFinderMt *p, UInt32 matchMinPos, UInt32 *dista
   const Byte *cur = p->pointerToCurPos;
   UInt32 lzPos = p->lzPos;
   MT_HASH2_CALC
-      
+
   curMatch2 = hash[h2];
   hash[h2] = lzPos;
 
@@ -634,7 +634,7 @@ static UInt32 * MixMatches3(CMatchFinderMt *p, UInt32 matchMinPos, UInt32 *dista
 
   curMatch2 = hash[                h2];
   curMatch3 = (hash + kFix3HashSize)[h3];
-  
+
   hash[                h2] = lzPos;
   (hash + kFix3HashSize)[h3] = lzPos;
 
@@ -649,7 +649,7 @@ static UInt32 * MixMatches3(CMatchFinderMt *p, UInt32 matchMinPos, UInt32 *dista
     distances[0] = 2;
     distances += 2;
   }
-  
+
   if (curMatch3 >= matchMinPos && cur[(ptrdiff_t)curMatch3 - lzPos] == cur[0])
   {
     *distances++ = 3;
@@ -667,11 +667,11 @@ static UInt32 *MixMatches4(CMatchFinderMt *p, UInt32 matchMinPos, UInt32 *distan
   const Byte *cur = p->pointerToCurPos;
   UInt32 lzPos = p->lzPos;
   MT_HASH4_CALC
-      
+
   curMatch2 = hash[                h2];
   curMatch3 = (hash + kFix3HashSize)[h3];
   curMatch4 = (hash + kFix4HashSize)[h4];
-  
+
   hash[                h2] = lzPos;
   (hash + kFix3HashSize)[h3] = lzPos;
   (hash + kFix4HashSize)[h4] = lzPos;
@@ -687,7 +687,7 @@ static UInt32 *MixMatches4(CMatchFinderMt *p, UInt32 matchMinPos, UInt32 *distan
     distances[0] = 2;
     distances += 2;
   }
-  
+
   if (curMatch3 >= matchMinPos && cur[(ptrdiff_t)curMatch3 - lzPos] == cur[0])
   {
     distances[1] = lzPos - curMatch3 - 1;
